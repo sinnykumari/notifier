@@ -2,7 +2,9 @@ FROM registry.fedoraproject.org/fedora:36
 
 RUN dnf -y install golang
 
-copy *.go ./
-
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
 RUN go build -o notifier
-CMD notifier
+
+CMD ["/app/notifier"]

@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifier-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: notifier-app
+  template:
+    metadata:
+      labels:
+        name: notifier-app
+    spec:
+      containers:
+      - name: application
+        image: quay.io/skumari/notifier
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000
